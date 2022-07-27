@@ -1,0 +1,7 @@
+generate migrations
+
+$ npx sequelize-cli model:generate --name Students --attributes name:string,email:string,cpf:string
+
+
+- migrate
+$ npx sequelize-cli db:migrate

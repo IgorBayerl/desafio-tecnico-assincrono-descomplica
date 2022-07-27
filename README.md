@@ -27,3 +27,7 @@ backend, ou nos dois :)
 serviço
 - Disponibilizar uma solução completa para o deploy da aplicação (helm chart,
 docker-compose)
+
+-----
+
+
