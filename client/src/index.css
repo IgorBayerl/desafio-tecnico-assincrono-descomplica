@@ -11,6 +11,12 @@ body {
 }
 
 .containerMaster {
-  background-color: blue;
+  /* background-color: rgb(238, 238, 238); */
   min-height: fit-content;
+}
+
+.board{
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
 }
