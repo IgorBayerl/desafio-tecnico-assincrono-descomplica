@@ -1,4 +1,4 @@
-# desafio-tecnico-assincrono-descomplica
+# Desafio Tecnico Assincrono  -  Descomplica
 
 ## Proposta
 - Desenvolver um serviço com API GraphQL que consuma um banco de dados de
