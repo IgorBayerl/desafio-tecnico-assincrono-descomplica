@@ -10,6 +10,7 @@ export interface IStudentsData {
 }
 
 export interface IFilter {
+  id?: number
   name?: string
   email?: string
   cpf?: string

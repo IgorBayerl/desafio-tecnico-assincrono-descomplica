@@ -10,11 +10,7 @@ import Add from './components/Add'
 import { IFilter } from './graphql/interfaces'
 
 export default function App() {
-  const [filters, setFilters] = useState<IFilter>({
-    name: '',
-    email: '',
-    cpf: '',
-  })
+  const [filters, setFilters] = useState<IFilter>({})
 
   return (
     <Container className="containerMaster" maxWidth="lg">
