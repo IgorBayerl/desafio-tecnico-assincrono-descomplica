@@ -6,7 +6,7 @@ alunos contendo: nome, CPF e e-mail.
   - [x] A API deve listar os alunos filtrando por quaisquer dos campos, retornando
 todos, caso nenhum seja informado.
 
-- [ ] Desenvolver uma UI em React que nos permita realizar consultas a esse serviço,
+- [x] Desenvolver uma UI em React que nos permita realizar consultas a esse serviço,
 consumindo e exibindo os dados retornados por ele.
 
 ## Requisitos não funcionais
