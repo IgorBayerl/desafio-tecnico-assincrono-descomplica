@@ -1,5 +1,3 @@
-// const { Error } = require('apollo-server-express')
-
 const { Students } = require('../../../database/models')
 
 module.exports = {
