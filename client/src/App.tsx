@@ -5,7 +5,6 @@ import Box from '@mui/material/Box'
 
 import Filter from './components/Filter'
 import CardsList from './components/CardsList'
-import Add from './components/Add'
 
 import { IFilter } from './graphql/interfaces'
 
@@ -15,7 +14,7 @@ export default function App() {
   return (
     <Container className="containerMaster" maxWidth="lg">
       <Box sx={{ my: 4 }}>
-        <Add />
+        {/* <Add /> */}
         <Filter />
         <CardsList filters={filters} />
       </Box>

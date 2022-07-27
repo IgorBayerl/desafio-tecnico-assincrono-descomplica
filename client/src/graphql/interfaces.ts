@@ -5,6 +5,12 @@ export interface IStudent {
   cpf: string
 }
 
+export interface IStudentAdd {
+  name: string
+  email: string
+  cpf: string
+}
+
 export interface IStudentsData {
   students: IStudent[] | []
 }
