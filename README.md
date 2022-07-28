@@ -11,7 +11,7 @@ consumindo e exibindo os dados retornados por ele.
 
 ## Requisitos não funcionais
 - [x] Ser escrito em JavaScript ou TypeScript
-- [ ] Tanto o serviço no backend quanto a UI serem servidos em containers Docker
+- [x] Tanto o serviço no backend quanto a UI serem servidos em containers Docker
 - [x] O banco de dados deve ser implementado num SGBD, como MySQL, Postgres ou
 similares.
 - [ ] Haver documentação (instruções sobre como devemos rodar seu projeto, por
@@ -25,7 +25,7 @@ exemplo, são indispensáveis)
 backend, ou nos dois :)
 - [ ] Acrescentar um proxy reverso redirecionando as requisições que chegam para o
 serviço
-- [ ] Disponibilizar uma solução completa para o deploy da aplicação (helm chart,
+- [x] Disponibilizar uma solução completa para o deploy da aplicação (helm chart,
 docker-compose)
 
 -----
