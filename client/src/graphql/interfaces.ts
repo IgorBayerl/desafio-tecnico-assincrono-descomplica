@@ -10,6 +10,21 @@ export interface IStudentAdd {
   email: string
   cpf: string
 }
+export interface IStudentUpdate {
+  id: number
+  name?: string
+  email?: string
+  cpf?: string
+}
+export interface IStudentFilter {
+  name?: string
+  email?: string
+  cpf?: string
+}
+
+export interface IStudentDelete {
+  id: number
+}
 
 export interface IStudentsData {
   students: IStudent[] | []

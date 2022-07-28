@@ -1,10 +1,7 @@
 import { IStudent } from '../graphql/interfaces'
-
-import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
-import Button from '@mui/material/Button'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import { Edit, Delete } from '@mui/icons-material'
@@ -39,15 +36,12 @@ export default function MyCard(props: IProps) {
         </Typography>
       </CardContent>
       <CardActions>
-        {/* <Button size="small">Edit</Button> */}
         <Tooltip title="Delete">
           <IconButton
             onClick={() => deleteItem(student.id)}
             color="error"
-            aria-label="upload picture"
             component="label"
           >
-            {/* <input hidden accept="image/*" type="file" /> */}
             <Delete />
           </IconButton>
         </Tooltip>
@@ -55,7 +49,6 @@ export default function MyCard(props: IProps) {
           <IconButton
             onClick={() => editItem(student.id)}
             color="primary"
-            aria-label="upload picture"
             component="label"
           >
             <Edit />
@@ -65,11 +58,3 @@ export default function MyCard(props: IProps) {
     </Card>
   )
 }
-
-// <div>
-/* <Typography variant="h5" component="h2">
-        {student.name}
-      </Typography>
-      <Typography variant="body1">{student.email}</Typography>
-      <Typography variant="body1">{student.cpf}</Typography> */
-// </div>

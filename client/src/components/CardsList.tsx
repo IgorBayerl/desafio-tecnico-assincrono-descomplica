@@ -1,56 +1,133 @@
+import { useEffect, useState } from 'react'
+import { IFilter, IStudent, IStudentAdd } from '../graphql/interfaces'
+import { useQuery, useMutation } from '@apollo/client'
+import { VariantType, useSnackbar } from 'notistack'
 import MyCard from './MyCard'
 import AddCard from './AddCard'
-import { gql, useQuery } from '@apollo/client'
+import EditModalCard from './EditModalCard'
+
 import {
-  IFilter,
-  IStudent,
-  IStudentsData,
-  IStudentAdd,
-} from '../graphql/interfaces'
-import Stack from '@mui/material/Stack'
-import { useCallback } from 'react'
+  GET_ALL_STUDENTS,
+  CREATE_STUDENT,
+  DELETE_STUDENT,
+  UPDATE_STUDENT,
+} from './../graphql/queries'
+import Modal from '@mui/material/Modal'
 
 interface IProps {
   filters: IFilter
 }
 
-const GET_ALL_STUDENTS = gql`
-  query ($where: GetStudentsInput) {
-    getStudents(where: $where) {
-      id
-      name
-      email
-      cpf
-    }
-  }
-`
-
 export default function CardsList(props: IProps) {
   const { filters } = props
 
-  const { loading, error, data } = useQuery(GET_ALL_STUDENTS, {
+  const { enqueueSnackbar } = useSnackbar()
+  const handleClickVariant = (variant: VariantType, message: String) =>
+    enqueueSnackbar(`${message}`, { variant })
+
+  const { data, loading, error, refetch } = useQuery(GET_ALL_STUDENTS, {
     variables: { where: filters },
   })
+
+  const [createStudent] = useMutation(CREATE_STUDENT)
+  const [deleteStudent] = useMutation(DELETE_STUDENT)
+  const [updateStudent] = useMutation(UPDATE_STUDENT)
+
+  const [students, setStudents] = useState<IStudent[]>([])
+
+  const [editModalOpen, setEditModalOpen] = useState<Boolean>(false)
+  const [editStudent, setEditStudent] = useState<IStudent | null>(null)
+
+  useEffect(() => {
+    if (!loading && data && data.getStudents) {
+      setStudents(data.getStudents)
+    }
+  }, [loading, data])
 
   if (loading) return <>'Loading...'</>
   if (error) return <>`Error! ${error.message}`</>
 
-  const deleteItem = (id: number) => {
-    console.log('deleteItem', id)
+  const handleCloseEditModal = () => {
+    setEditModalOpen(false)
+    console.log('handleCloseEditModal')
+  }
+
+  const handleConfirmEditModal = async (student: IStudent) => {
+    try {
+      const response = await updateStudent({
+        variables: { input: student },
+      })
+      const { success, message } = response.data.update
+      handleClickVariant(success ? 'success' : 'error', message)
+      setEditModalOpen(false)
+      setEditStudent(null)
+      refetch()
+    } catch (error) {
+      handleClickVariant('error', JSON.stringify(error))
+    }
+  }
+
+  const addItem = async (student: IStudentAdd) => {
+    try {
+      if (!student.name) {
+        handleClickVariant('error', 'Name is required!')
+        return
+      }
+      if (!student.email) {
+        handleClickVariant('error', 'Email is required!')
+        return
+      }
+      if (!student.cpf) {
+        handleClickVariant('error', 'CPF is required!')
+        return
+      }
+      const response = await createStudent({
+        variables: { input: student },
+      })
+      const { success, message } = response.data.create
+      handleClickVariant(success ? 'success' : 'error', message)
+      refetch()
+    } catch (error) {
+      handleClickVariant('error', JSON.stringify(error))
+    }
+  }
+
+  const deleteItem = async (id: number) => {
+    try {
+      const response = await deleteStudent({
+        variables: { input: { id } },
+      })
+      const { success, message } = response.data.delete
+      handleClickVariant(success ? 'success' : 'error', message)
+      refetch()
+    } catch (error) {
+      handleClickVariant('error', JSON.stringify(error))
+    }
   }
 
   const editItem = (id: number) => {
-    console.log('editItem', id)
-  }
-
-  const addItem = (student: IStudentAdd) => {
-    console.log('editItem', student)
+    const student = students.find((s) => s.id === id)
+    if (student) {
+      setEditStudent(student)
+      setEditModalOpen(true)
+    }
   }
 
   return (
     <div className="board">
+      <Modal open={!!editModalOpen} onClose={handleCloseEditModal}>
+        <>
+          {editStudent && (
+            <EditModalCard
+              student={editStudent}
+              onConfirm={handleConfirmEditModal}
+              onClose={handleCloseEditModal}
+            />
+          )}
+        </>
+      </Modal>
       <AddCard addItem={addItem} />
-      {data.getStudents.map((student: IStudent) => (
+      {students.map((student: IStudent) => (
         <MyCard
           deleteItem={deleteItem}
           editItem={editItem}
@@ -60,4 +137,15 @@ export default function CardsList(props: IProps) {
       ))}
     </div>
   )
+}
+
+const style = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+  p: 4,
 }

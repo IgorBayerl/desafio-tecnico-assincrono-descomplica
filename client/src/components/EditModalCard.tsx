@@ -1,38 +1,34 @@
 import { useState, useCallback } from 'react'
-import { IStudentAdd } from '../graphql/interfaces'
+import { IStudent } from '../graphql/interfaces'
 import Card from '@mui/material/Card'
-import Input from '@mui/material/Input'
 import CardActions from '@mui/material/CardActions'
 import CardContent from '@mui/material/CardContent'
 import IconButton from '@mui/material/IconButton'
+import { Check, Cancel } from '@mui/icons-material'
 import Tooltip from '@mui/material/Tooltip'
-import { Delete, Add } from '@mui/icons-material'
+import Input from '@mui/material/Input'
 
 interface IProps {
-  addItem: (student: IStudentAdd) => void
+  student: IStudent
+  onConfirm: (student: IStudent) => void
+  onClose: () => void
 }
 
-export default function AddCard(props: IProps) {
-  const { addItem } = props
+export default function EditModalCard(props: IProps) {
+  const { student, onConfirm, onClose } = props
 
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [cpf, setCpf] = useState('')
+  const [name, setName] = useState<string>(student.name)
+  const [email, setEmail] = useState<string>(student.email)
+  const [cpf, setCpf] = useState<string>(student.cpf)
 
-  const clearInputs = useCallback(() => {
-    setName('')
-    setEmail('')
-    setCpf('')
-  }, [setName, setEmail, setCpf])
-
-  const handleAdd = useCallback(() => {
-    addItem({
+  const handleClickConfirm = useCallback(() => {
+    onConfirm({
+      id: student.id,
       name,
       email,
       cpf,
     })
-    clearInputs()
-  }, [name, email, cpf, addItem, clearInputs])
+  }, [student, name, email, cpf, onConfirm])
 
   return (
     <Card
@@ -41,6 +37,15 @@ export default function AddCard(props: IProps) {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
+        position: 'absolute' as 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: 400,
+        bgcolor: 'background.paper',
+        border: '2px solid #000',
+        boxShadow: 24,
+        p: 4,
       }}
     >
       <CardContent>
@@ -65,31 +70,22 @@ export default function AddCard(props: IProps) {
           placeholder="CPF"
           onChange={(e) => setCpf(e.target.value)}
           value={cpf}
-          onKeyPress={(e) => {
-            if (e.key === 'Enter') {
-              handleAdd()
-            }
-          }}
         ></Input>
         <br />
       </CardContent>
       <CardActions>
-        <Tooltip title="Clear inputs">
-          <IconButton
-            onClick={() => clearInputs()}
-            color="error"
-            component="label"
-          >
-            <Delete />
+        <Tooltip title="Cancel Edit">
+          <IconButton onClick={() => onClose()} color="error" component="label">
+            <Cancel />
           </IconButton>
         </Tooltip>
-        <Tooltip title="Add">
+        <Tooltip title="Confirm Edit">
           <IconButton
-            onClick={() => handleAdd()}
+            onClick={() => handleClickConfirm()}
             color="primary"
             component="label"
           >
-            <Add />
+            <Check />
           </IconButton>
         </Tooltip>
       </CardActions>
