@@ -18,8 +18,8 @@ similares.
 exemplo, são indispensáveis)
 
 ## Você se destacará se...
-- [ ] Adicionar, editar ou excluir alunos via React app
-- [ ] Realizar commits específicos e detalhados
+- [x] Adicionar, editar ou excluir alunos via React app
+- [x] Realizar commits específicos e detalhados
 - [ ] Escrever testes automatizados
 - [ ] Acrescentar algum tipo de cache para a consulta dos dados (no frontend, no
 backend, ou nos dois :)
