@@ -36,6 +36,7 @@ export default function AddCard(props: IProps) {
 
   return (
     <Card
+      data-testid="add-card"
       sx={{
         minWidth: 275,
         display: 'flex',
