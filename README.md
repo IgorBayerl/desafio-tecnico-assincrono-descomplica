@@ -20,8 +20,8 @@ exemplo, são indispensáveis)
 ## Você se destacará se...
 - [x] Adicionar, editar ou excluir alunos via React app
 - [x] Realizar commits específicos e detalhados
-- [] Escrever testes automatizados
-- [ ] Acrescentar algum tipo de cache para a consulta dos dados (no frontend, no
+- [ ] Escrever testes automatizados
+- [X] Acrescentar algum tipo de cache para a consulta dos dados (no frontend, no
 backend, ou nos dois :)
 - [x] Acrescentar um proxy reverso redirecionando as requisições que chegam para o
 serviço
