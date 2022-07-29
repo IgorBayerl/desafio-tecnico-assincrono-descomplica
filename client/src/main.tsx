@@ -13,9 +13,11 @@ import '@fontsource/roboto/700.css'
 import { SnackbarProvider } from 'notistack'
 
 const client = new ApolloClient({
-  uri: 'http://localhost:3001/api',
+  uri: `${import.meta.env.VITE_SERVER_URL}/api`,
   cache: new InMemoryCache(),
 })
+
+console.log(`client url ${import.meta.env.VITE_SERVER_URL}`)
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

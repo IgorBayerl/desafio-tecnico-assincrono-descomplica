@@ -1,3 +1,5 @@
+# FOR DEVELOPMENT
+
 # FROM node
 
 # RUN mkdir -p /usr/src/app
@@ -10,7 +12,7 @@
 # EXPOSE 3000
 # CMD [ "npm", "start" ]
 
-
+# FOR PRODUCTION WITH NGINX
 FROM mhart/alpine-node:16 AS builder
 
 WORKDIR /app
@@ -18,6 +20,8 @@ WORKDIR /app
 COPY . .
 
 RUN yarn
+
+ENV VITE_SERVER_URL=http://localhost:4848
 
 RUN yarn build
 

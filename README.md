@@ -31,3 +31,10 @@ docker-compose)
 -----
 
 
+## Setup
+1. docker-compose up --build
+2. docker exec -it server-docker sh <!-- Enter backend docker container -->
+3. NODE_ENV=docker node_modules/.bin/sequelize db:create
+4. NODE_ENV=docker node_modules/.bin/sequelize db:migrate
+5. NODE_ENV=docker node_modules/.bin/sequelize db:seed:all
+

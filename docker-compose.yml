@@ -1,18 +1,47 @@
-version: '3'
+version: '3.8'
 
-services:
+services: 
   client: # Name of our service
     build: ./client # path to dockerfile
     ports: # Port binding to host from docker container
       - "3000:3000" # Bind port 3000 of host to 3000 of container
     container_name: client-docker
     restart: always # What to do if container crashes
+    environment:
+      - VITE_SERVER_URL=server:4848
     links:
       - server
 
-  server: 
-    build: ./server 
-    ports: 
-      - "8080:8080"
-    container_name: server-docker
-    restart: always 
+  server:
+    container_name: node_server
+    restart: always
+    build: 
+      context: ./server
+    ports:
+      - "4848:4848"
+    environment: 
+      - PORT=4848
+      - PGDATABASE=tabnine_db
+      - PGUSER=francesco
+      - PGPASSWORD=12345
+      - PGHOST=node_db
+    depends_on: 
+      - node_db
+      
+  node_db: 
+    container_name: node_db
+    image: "postgres:12"
+    ports:
+      - "5432:5432"
+    environment: 
+      - POSTGRES_USER=francesco
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=tabnine_db
+    volumes:
+      - nps_data:/var/lib/postgresql/data
+
+volumes:
+  nps_data: {}
+
+  
+    
