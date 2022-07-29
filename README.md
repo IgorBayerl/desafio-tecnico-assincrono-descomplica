@@ -35,7 +35,7 @@ docker-compose)
 
 1. Rode o comando abaixo
 ```
-$ docker-compose up --build
+docker-compose up --build
 ```
 
 2. Acesse a UI pelo endereço
