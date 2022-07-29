@@ -14,7 +14,7 @@ consumindo e exibindo os dados retornados por ele.
 - [x] Tanto o serviço no backend quanto a UI serem servidos em containers Docker
 - [x] O banco de dados deve ser implementado num SGBD, como MySQL, Postgres ou
 similares.
-- [ ] Haver documentação (instruções sobre como devemos rodar seu projeto, por
+- [x] Haver documentação (instruções sobre como devemos rodar seu projeto, por
 exemplo, são indispensáveis)
 
 ## Você se destacará se...
@@ -32,9 +32,48 @@ docker-compose)
 
 
 ## Setup
-1. docker-compose up --build
-2. docker exec -it server-docker sh <!-- Enter backend docker container -->
-3. NODE_ENV=docker node_modules/.bin/sequelize db:create
-4. NODE_ENV=docker node_modules/.bin/sequelize db:migrate
-5. NODE_ENV=docker node_modules/.bin/sequelize db:seed:all
+
+1. Rode o comando abaixo
+```
+$ docker-compose up --build
+```
+
+2. Acesse a UI pelo endereço
+```
+http://localhost:3000/
+```
+## Resultado
+
+![Print da tela](images/Screenshot_1.png "Print da tela")
+
+# Desenvolvimento
+## Client
+1. acesse o diretorio do client 
+```
+$ cd client
+```
+2. instale as dependencias 
+```
+$ yarn
+```
+3. execute o projeto em modo desenvolvimento com o comando 
+```
+$ yarn dev
+```
+
+
+## Server
+1. acesse o diretorio do client 
+```
+$ cd server
+```
+2. instale as dependencias 
+```
+$ npm install
+```
+3. execute o projeto em modo desenvolvimento com o comando 
+```
+$ npm run dev
+```
+
 
