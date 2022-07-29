@@ -40,6 +40,18 @@ services:
     volumes:
       - nps_data:/var/lib/postgresql/data
 
+  reverse_proxy:
+    image: "nginx:1.17.10"
+    container_name: reverse_proxy
+    depends_on:
+      - client
+      - server
+      - node_db
+    volumes:
+      - ./reverse_proxy/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "80:80"
+
 volumes:
   nps_data: {}
 

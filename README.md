@@ -20,10 +20,10 @@ exemplo, são indispensáveis)
 ## Você se destacará se...
 - [x] Adicionar, editar ou excluir alunos via React app
 - [x] Realizar commits específicos e detalhados
-- [ ] Escrever testes automatizados
+- [] Escrever testes automatizados
 - [ ] Acrescentar algum tipo de cache para a consulta dos dados (no frontend, no
 backend, ou nos dois :)
-- [ ] Acrescentar um proxy reverso redirecionando as requisições que chegam para o
+- [x] Acrescentar um proxy reverso redirecionando as requisições que chegam para o
 serviço
 - [x] Disponibilizar uma solução completa para o deploy da aplicação (helm chart,
 docker-compose)
@@ -40,7 +40,12 @@ $ docker-compose up --build
 
 2. Acesse a UI pelo endereço
 ```
-http://localhost:3000/
+http://localhost
+```
+
+3. Graphql endpoint é localizado no endereço
+```
+http://localhost/graphql
 ```
 ## Resultado
 
