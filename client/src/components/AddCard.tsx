@@ -46,6 +46,7 @@ export default function AddCard(props: IProps) {
     >
       <CardContent>
         <Input
+          data-testid="name-input"
           sx={{ mb: 1.5, width: '100%' }}
           placeholder="Name"
           onChange={(e) => setName(e.target.value)}
@@ -54,6 +55,7 @@ export default function AddCard(props: IProps) {
         <br />
 
         <Input
+          data-testid="email-input"
           sx={{ mb: 1.5, width: '100%' }}
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
@@ -62,6 +64,7 @@ export default function AddCard(props: IProps) {
         <br />
 
         <Input
+          data-testid="cpf-input"
           sx={{ mb: 1.5, width: '100%' }}
           placeholder="CPF"
           onChange={(e) => setCpf(e.target.value)}
@@ -77,6 +80,7 @@ export default function AddCard(props: IProps) {
       <CardActions>
         <Tooltip title="Clear inputs">
           <IconButton
+            data-testid="clear-inputs-button"
             onClick={() => clearInputs()}
             color="error"
             component="label"
@@ -86,6 +90,7 @@ export default function AddCard(props: IProps) {
         </Tooltip>
         <Tooltip title="Add">
           <IconButton
+            data-testid="add-button"
             onClick={() => handleAdd()}
             color="primary"
             component="label"
