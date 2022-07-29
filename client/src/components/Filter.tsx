@@ -23,6 +23,13 @@ export default function Filter(props: IProps) {
     })
   }, [cbFilters, name, email, cpf])
 
+  const handleClear = useCallback(() => {
+    setName('')
+    setEmail('')
+    setCpf('')
+    handleSubmit()
+  }, [cbFilters, setName, setEmail, setCpf])
+
   return (
     <Box sx={{ my: 4 }}>
       <Typography variant="h6" component="h6">
@@ -65,6 +72,15 @@ export default function Filter(props: IProps) {
       ></Input>
       <Button variant="contained" onClick={handleSubmit} color="primary">
         Filter
+      </Button>
+
+      <Button
+        sx={{ marginLeft: '10px' }}
+        variant="contained"
+        onClick={handleClear}
+        color="error"
+      >
+        Clear Filter
       </Button>
     </Box>
   )
