@@ -5,6 +5,7 @@ import { VariantType, useSnackbar } from 'notistack'
 import MyCard from './MyCard'
 import AddCard from './AddCard'
 import EditModalCard from './EditModalCard'
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 
 import {
   GET_ALL_STUDENTS,
@@ -20,6 +21,8 @@ interface IProps {
 
 export default function CardsList(props: IProps) {
   const { filters } = props
+
+  const [listRef] = useAutoAnimate<HTMLDivElement>()
 
   const { enqueueSnackbar } = useSnackbar()
   const handleClickVariant = (variant: VariantType, message: String) =>
@@ -114,7 +117,7 @@ export default function CardsList(props: IProps) {
   }
 
   return (
-    <div className="board">
+    <div className="board" ref={listRef}>
       <Modal open={!!editModalOpen} onClose={handleCloseEditModal}>
         <>
           {editStudent && (
