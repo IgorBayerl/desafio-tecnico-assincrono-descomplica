@@ -47,6 +47,8 @@ http://localhost:3000/
 ![Print da tela](images/Screenshot_1.png "Print da tela")
 
 # Desenvolvimento
+As instruções abaixo são para executar os ambientes em modo de desenvolvimento.
+
 ## Client
 1. acesse o diretorio do client 
 ```
@@ -75,5 +77,16 @@ $ npm install
 ```
 $ npm run dev
 ```
+
+4. Ao executar sem o docker-compose o banco de dados não é criado automaticamente, você precisa configurar um banco de dados SQL (utilizei postgres para o projeto)
+
+Crie um arquivo ```.env``` e adicione as variaveis de ambiente
+```
+PGHOST=node_db
+PORT=4848
+```
+
+
+
 
 
